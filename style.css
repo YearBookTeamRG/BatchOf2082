@@ -1,0 +1,634 @@
+/* ============================================================
+   SEE BATCH OF 2082 — Main Stylesheet
+   style.css | Shared by index.html and teachers.html
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Josefin+Sans:wght@200;300;400;600&display=swap');
+
+/* --- CSS VARIABLES --- */
+:root {
+  --bg:          #08111E;
+  --bg-2:        #0D1B2D;
+  --gold:        #C9A55A;
+  --gold-light:  #E2C47A;
+  --gold-dim:    rgba(201, 165, 90, 0.15);
+  --gold-glow:   rgba(201, 165, 90, 0.08);
+  --cream:       #EEE2C6;
+  --cream-dim:   #9B9078;
+  --text:        #E2D8C0;
+  --card-bg:     rgba(201, 165, 90, 0.04);
+  --card-border: rgba(201, 165, 90, 0.14);
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body:    'Josefin Sans', sans-serif;
+}
+
+/* --- RESET --- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* --- GRAIN OVERLAY (subtle paper texture) --- */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9000;
+  opacity: 1;
+}
+
+/* =============================================
+   CUSTOM CURSOR
+   ============================================= */
+#cursor {
+  width: 7px; height: 7px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease, background 0.2s;
+  transform: translate(-50%, -50%);
+}
+#cursor-ring {
+  width: 30px; height: 30px;
+  border: 1px solid rgba(201, 165, 90, 0.45);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: border-color 0.3s, transform 0.3s;
+  transform: translate(-50%, -50%);
+}
+body.hovering #cursor { transform: translate(-50%,-50%) scale(2.2); }
+body.hovering #cursor-ring { transform: translate(-50%,-50%) scale(1.5); border-color: rgba(201,165,90,0.7); }
+
+/* =============================================
+   PARTICLE CANVAS
+   ============================================= */
+#particleCanvas {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =============================================
+   CONFETTI CANVAS
+   ============================================= */
+#confettiCanvas {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 8000;
+}
+
+/* =============================================
+   NAVBAR
+   ============================================= */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 3.5rem;
+  background: rgba(8, 17, 30, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--card-border);
+  transition: padding 0.3s;
+}
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  font-weight: 400;
+  font-style: italic;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2.8rem;
+  align-items: center;
+}
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--cream-dim);
+  transition: color 0.3s;
+  position: relative;
+  padding-bottom: 3px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.35s ease;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--gold); }
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; }
+
+/* =============================================
+   HERO  (Homepage only)
+   ============================================= */
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 9rem 2rem 5rem;
+}
+.hero-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.3s forwards;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.8rem, 11vw, 9rem);
+  font-weight: 300;
+  line-height: 1.0;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  opacity: 0;
+  animation: fadeUp 1.2s ease 0.5s forwards;
+  transition: color 0.3s;
+  cursor: pointer;
+  user-select: none;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+  display: block;
+}
+.hero-title:hover { color: var(--gold-light); }
+.hero-sub {
+  margin-top: 1.8rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+  opacity: 0;
+  animation: fadeUp 1s ease 0.9s forwards;
+}
+
+/* Days counter */
+.days-counter {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  opacity: 0;
+  animation: fadeUp 1s ease 1.1s forwards;
+}
+.days-number {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--gold);
+  font-weight: 300;
+  line-height: 1;
+}
+.days-label {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeUp 1s ease 1.4s forwards;
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--gold));
+  animation: pulse-line 2s ease infinite;
+}
+.scroll-text {
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+}
+@keyframes pulse-line {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50%       { opacity: 0.9; transform: scaleY(1.15); }
+}
+
+/* =============================================
+   GROUP PHOTO  (Homepage)
+   ============================================= */
+.group-photo-section {
+  position: relative; z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 2rem 4rem;
+}
+.photo-frame {
+  width: min(800px, 92vw);
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.45s ease;
+}
+.photo-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,165,90,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+.photo-frame:hover {
+  border-color: rgba(201,165,90,0.3);
+  box-shadow: 0 0 60px rgba(201,165,90,0.07), 0 20px 60px rgba(0,0,0,0.4);
+  transform: scale(1.005);
+}
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.6rem;
+}
+.photo-placeholder .icon { font-size: 3rem; margin-bottom: 0.5rem; }
+.photo-placeholder p { font-size: 0.8rem; letter-spacing: 0.1em; color: var(--cream-dim); }
+.photo-placeholder span { font-size: 0.62rem; letter-spacing: 0.18em; color: var(--gold); opacity: 0.65; font-style: italic; }
+.photo-caption {
+  margin-top: 1.3rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--cream-dim);
+  letter-spacing: 0.06em;
+}
+
+/* =============================================
+   MESSAGE SECTION  (Homepage)
+   ============================================= */
+.message-section {
+  position: relative; z-index: 1;
+  padding: 5rem 2rem 6rem;
+  display: flex; justify-content: center;
+}
+.message-container {
+  max-width: 680px;
+  text-align: center;
+}
+.section-deco {
+  display: block;
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  animation: float 4s ease-in-out infinite;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: 2rem;
+  line-height: 1.15;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+.message-text {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 2.0;
+  color: var(--cream-dim);
+  font-style: italic;
+}
+/* ↑ To change the message, edit the text inside <p class="message-text"> in index.html */
+
+/* =============================================
+   LINKS SECTION  (Homepage)
+   ============================================= */
+.links-section {
+  position: relative; z-index: 1;
+  padding: 2rem 2rem 7rem;
+  text-align: center;
+}
+.links-section .section-title { margin-bottom: 2.5rem; }
+.link-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.95rem 2.2rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(201,165,90,0.12), transparent);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 30px rgba(201,165,90,0.1), 0 8px 30px rgba(0,0,0,0.3);
+  transform: translateY(-3px);
+}
+.btn:hover::before { opacity: 1; }
+.btn-icon { font-size: 1.1rem; }
+
+/* =============================================
+   PAGE HEADER  (teachers.html)
+   ============================================= */
+.page-header {
+  position: relative; z-index: 1;
+  text-align: center;
+  padding: 11rem 2rem 5rem;
+}
+.page-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+}
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.05;
+}
+.page-title em { font-style: italic; color: var(--gold); }
+.page-divider {
+  width: 50px; height: 1px;
+  background: var(--gold);
+  margin: 2rem auto 0;
+  opacity: 0.45;
+}
+
+/* =============================================
+   TEACHERS SECTION  (teachers.html)
+   ============================================= */
+.teachers-wrapper {
+  position: relative; z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 4rem 2rem 7rem;
+}
+.teachers-sublabel {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* Grade Teachers — featured row */
+.grade-teachers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4.5rem;
+}
+
+/* Other teachers grid */
+.other-teachers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Teacher Card */
+.teacher-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.teacher-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.teacher-card:hover { border-color: rgba(201,165,90,0.28); box-shadow: 0 15px 50px rgba(0,0,0,0.35), 0 0 0 1px rgba(201,165,90,0.04); transform: translateY(-5px); }
+.teacher-card:hover::after { transform: scaleX(1); }
+.teacher-card.featured { padding: 3rem 2.5rem 2.5rem; }
+
+.teacher-photo-wrap {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  margin: 0 auto 1.6rem;
+  border: 1px solid var(--card-border);
+  background: rgba(201,165,90,0.04);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  overflow: hidden;
+  transition: border-color 0.4s, box-shadow 0.4s;
+}
+.featured .teacher-photo-wrap { width: 125px; height: 125px; font-size: 2.2rem; }
+.teacher-card:hover .teacher-photo-wrap { border-color: rgba(201,165,90,0.4); box-shadow: 0 0 20px rgba(201,165,90,0.1); }
+.teacher-photo-wrap img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+
+.teacher-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201,165,90,0.08);
+  border: 1px solid rgba(201,165,90,0.14);
+  padding: 0.25rem 0.8rem;
+  margin-bottom: 0.9rem;
+}
+.teacher-name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.25rem;
+}
+.featured .teacher-name { font-size: 1.9rem; }
+.teacher-subject {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+  margin-bottom: 1.6rem;
+}
+.teacher-rule {
+  width: 28px; height: 1px;
+  background: var(--gold);
+  margin: 0 auto 1.6rem;
+  opacity: 0.35;
+}
+.teacher-message {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.9;
+  color: var(--cream-dim);
+}
+.teacher-message.placeholder { color: rgba(155, 144, 120, 0.35); }
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+  position: relative; z-index: 1;
+  text-align: center;
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--card-border);
+}
+.footer-text {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+}
+.footer-secret {
+  margin-top: 1.2rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  color: rgba(201, 165, 90, 0.22);
+  cursor: pointer;
+  transition: color 0.35s;
+  display: inline-block;
+}
+.footer-secret:hover { color: var(--gold); }
+
+/* =============================================
+   EASTER EGG MODAL
+   ============================================= */
+.easter-modal {
+  position: fixed; inset: 0;
+  background: rgba(8, 17, 30, 0.96);
+  z-index: 7000;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s;
+  backdrop-filter: blur(10px);
+}
+.easter-modal.active { opacity: 1; pointer-events: all; }
+.easter-box {
+  text-align: center;
+  max-width: 480px;
+  padding: 3.5rem 3rem;
+  border: 1px solid var(--card-border);
+  background: var(--bg-2);
+  position: relative;
+}
+.easter-emoji { font-size: 3rem; margin-bottom: 1rem; display: block; animation: bounce 1.2s ease infinite; }
+.easter-box h3 { font-family: var(--font-display); font-size: 2.2rem; font-weight: 300; color: var(--gold); margin-bottom: 1rem; }
+.easter-box p { font-family: var(--font-display); font-size: 1.1rem; font-style: italic; line-height: 1.85; color: var(--cream-dim); margin-bottom: 2rem; }
+.easter-close {
+  background: none;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.8rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.easter-close:hover { background: rgba(201,165,90,0.1); }
+
+/* =============================================
+   SCROLL FADE ANIMATION
+   ============================================= */
+.scroll-fade { opacity: 0; transform: translateY(28px); transition: opacity 0.85s ease, transform 0.85s ease; }
+.scroll-fade.visible { opacity: 1; transform: translateY(0); }
+.scroll-fade-delay-1 { transition-delay: 0.1s; }
+.scroll-fade-delay-2 { transition-delay: 0.2s; }
+.scroll-fade-delay-3 { transition-delay: 0.3s; }
+.scroll-fade-delay-4 { transition-delay: 0.4s; }
+
+/* =============================================
+   KEYFRAME ANIMATIONS
+   ============================================= */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes float  { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 768px) {
+  .navbar { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  .hero { padding: 7.5rem 1.5rem 4rem; }
+  .grade-teachers { grid-template-columns: 1fr; }
+  .other-teachers-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .easter-box { padding: 2.5rem 1.5rem; margin: 1rem; }
+  .teachers-wrapper { padding: 3rem 1.2rem 5rem; }
+}
+@media (max-width: 480px) {
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.6rem; }
+  .link-buttons { flex-direction: column; align-items: center; }
+  .btn { width: 100%; max-width: 300px; justify-content: center; }
+}

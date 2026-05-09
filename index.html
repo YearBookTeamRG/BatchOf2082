@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEE Batch of 2082</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── CUSTOM CURSOR ────────────────────────── -->
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- ── BACKGROUND PARTICLES CANVAS ─────────── -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- ── CONFETTI CANVAS ──────────────────────── -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- ── NAVBAR ───────────────────────────────── -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">SEE '82</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="teachers.html">Teachers</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section class="hero">
+    <span class="hero-eyebrow">Secondary Education Examination</span>
+
+    <!--
+      💥 SURPRISE #1:
+      Click this title to trigger a gold confetti burst!
+    -->
+    <h1 class="hero-title" id="heroTitle">
+      SEE Batch
+      <em>of 2082</em>
+    </h1>
+
+    <p class="hero-sub">Where memories were made &nbsp;·&nbsp; Where futures began</p>
+
+    <!--
+      📅 SURPRISE #7:
+      Live counter showing how many days the batch has been together.
+      Update the start date inside script.js if needed (search: startDate).
+    -->
+    <div class="days-counter">
+      <span class="days-number" id="daysCounter">0</span>
+      <span class="days-label">days together &nbsp;✦&nbsp; and counting</span>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span class="scroll-text">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       GROUP PHOTO
+  ═══════════════════════════════════════════ -->
+  <section class="group-photo-section scroll-fade">
+    <div class="photo-frame">
+
+      <!--
+        ════════════════════════════════════
+        HOW TO ADD YOUR GROUP PHOTO:
+        1. Put your group photo file inside the "images" folder
+        2. Name it exactly:  group-photo.jpg
+        3. Delete the <div class="photo-placeholder"> block below
+        4. Uncomment the <img> tag below it
+        ════════════════════════════════════
+      -->
+      <div class="photo-placeholder">
+        <span class="icon">📸</span>
+        <p>Place your group photo here</p>
+        <span>→ images/group-photo.jpg</span>
+      </div>
+
+      <!-- <img src="images/group-photo.jpg" alt="SEE Batch of 2082 — Group Photo" /> -->
+
+    </div>
+    <p class="photo-caption">SEE Batch of 2082 &nbsp;—&nbsp; Together, Always.</p>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SHORT MESSAGE
+  ═══════════════════════════════════════════ -->
+  <section class="message-section scroll-fade scroll-fade-delay-1">
+    <div class="message-container">
+      <span class="section-deco">✦</span>
+      <h2 class="section-title">A Note <em>to Us</em></h2>
+
+      <!--
+        ════════════════════════════════════
+        HOW TO CHANGE THIS MESSAGE:
+        Simply replace the text between the <p> tags below.
+        ════════════════════════════════════
+      -->
+      <p class="message-text">
+        We walked these halls, shared these desks, fought through these exams —
+        and now here we stand, on the edge of something new. Whatever road you
+        take from here, know that this chapter, this batch, this story will
+        always be a part of who you are.
+        <br /><br />
+        To SEE Batch of 2082 &mdash; we made it. 🎓
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       LINKS — WhatsApp + Drive
+  ═══════════════════════════════════════════ -->
+  <section class="links-section scroll-fade scroll-fade-delay-2">
+    <h2 class="section-title">Stay <em>Connected</em></h2>
+    <div class="link-buttons">
+
+      <!--
+        ════════════════════════════════════
+        HOW TO ADD YOUR WHATSAPP GROUP LINK:
+        Replace  YOUR_WHATSAPP_LINK_HERE  with your actual link.
+        Example: https://chat.whatsapp.com/XXXXXXXXXXXXXXXXX
+        ════════════════════════════════════
+      -->
+      <a href="YOUR_WHATSAPP_LINK_HERE" class="btn" target="_blank" rel="noopener">
+        <span class="btn-icon">💬</span>
+        WhatsApp Group
+      </a>
+
+      <!--
+        ════════════════════════════════════
+        HOW TO ADD YOUR GOOGLE DRIVE LINK:
+        Replace  YOUR_DRIVE_LINK_HERE  with your actual link.
+        Example: https://drive.google.com/drive/folders/XXXXXXXXXX
+        ════════════════════════════════════
+      -->
+      <a href="YOUR_DRIVE_LINK_HERE" class="btn" target="_blank" rel="noopener">
+        <span class="btn-icon">📁</span>
+        Photo Album
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <p class="footer-text">SEE Batch of 2082 &nbsp;·&nbsp; Made with love 💛</p>
+    <!--
+      🌟 SURPRISE #5: Click the "✦ click me ✦" below to reveal a secret message!
+    -->
+    <span class="footer-secret" id="footerSecret">✦ &nbsp; click me &nbsp; ✦</span>
+  </footer>
+
+  <!-- ══════════════════════════════════════════
+       EASTER EGG MODAL
+       (Opens when "✦ click me ✦" is clicked)
+  ═══════════════════════════════════════════ -->
+  <div class="easter-modal" id="easterModal">
+    <div class="easter-box">
+      <span class="easter-emoji">🎓✨</span>
+      <h3>You found the secret!</h3>
+      <p>
+        No matter where life takes us, we'll always be the SEE Batch of 2082.
+        Proud of every single one of us. Carry this chapter with you, always. 💛
+      </p>
+      <button class="easter-close" onclick="closeEaster()">Close &nbsp;✦</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
