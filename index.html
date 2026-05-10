@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SEE Batch of 2082 — Rajarshi Gurukul</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+  <canvas id="particleCanvas"></canvas>
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- ═══ NAVBAR ═══════════════════════════════════════ -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      SEE '82
+      <small>Rajarshi Gurukul</small>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="teachers.html">Teachers</a></li>
+      <li><a href="team.html">The Team</a></li>
+    </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══ HERO ══════════════════════════════════════════ -->
+  <section class="hero">
+    <span class="hero-school">Rajarshi Gurukul</span>
+    <span class="hero-eyebrow">Secondary Education Examination</span>
+
+    <!-- 💥 Click this title for a confetti surprise! -->
+    <h1 class="hero-title" id="heroTitle">
+      SEE Batch
+      <em>of 2082</em>
+    </h1>
+
+    <p class="hero-sub">Where memories were made &nbsp;·&nbsp; Where futures began</p>
+
+    <!-- 📅 Live counter since April 25, 2016 -->
+    <div class="days-counter">
+      <span class="days-number" id="daysCounter">0</span>
+      <span class="days-label">days together &nbsp;✦&nbsp; and counting</span>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span class="scroll-text">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══ GROUP PHOTO ════════════════════════════════════ -->
+  <!--
+    HOW TO ADD YOUR GROUP PHOTO:
+    1. Put your photo inside the "images/" folder
+    2. Name it exactly: group-photo.jpg
+    3. That's it! The placeholder disappears automatically when the image loads.
+  -->
+  <section class="group-photo-section scroll-fade">
+    <div class="photo-frame">
+      <img id="groupImg" src="images/group-photo.jpg" alt="SEE Batch of 2082 — Rajarshi Gurukul"/>
+      <div class="photo-placeholder" id="groupPlaceholder">
+        <span class="icon">📸</span>
+        <p>Place your group photo here</p>
+        <span>→ save as:&nbsp; images/group-photo.jpg</span>
+      </div>
+    </div>
+    <p class="photo-caption">SEE Batch of 2082 &nbsp;—&nbsp; Rajarshi Gurukul &nbsp;·&nbsp; Together, Always.</p>
+  </section>
+
+  <!-- ═══ SHORT MESSAGE ══════════════════════════════════ -->
+  <section class="message-section scroll-fade scroll-fade-delay-1">
+    <div class="message-container">
+      <span class="section-deco">✦</span>
+      <h2 class="section-title">A Note <em>to Us</em></h2>
+      <!--
+        CHANGE THIS MESSAGE: Replace the text below with your own words.
+        Line breaks you type here will show exactly as written.
+      -->
+      <p class="message-text">We walked these halls, shared these desks, fought through these exams —
+and now here we stand, on the edge of something new.
+
+Whatever road you take from here, know that this chapter, this batch, this story will always be a part of who you are.
+
+To SEE Batch of 2082 — we made it. 🎓</p>
+    </div>
+  </section>
+
+  <!-- ═══ LINKS ══════════════════════════════════════════ -->
+  <section class="links-section scroll-fade scroll-fade-delay-2">
+    <h2 class="section-title">Stay <em>Connected</em></h2>
+    <div class="link-buttons">
+
+      <!--
+        WHATSAPP: Replace YOUR_WHATSAPP_LINK with your actual link
+        Example:  https://chat.whatsapp.com/AbCdEfGhIjK
+      -->
+      <a href="https://chat.whatsapp.com/IAuvceY6gFsEJ4JfoEsHC5?mode=gi_t" class="btn" target="_blank" rel="noopener">
+        <span class="btn-icon">💬</span>
+        WhatsApp Group
+      </a>
+
+      <!--
+        PHOTO ALBUM: Replace YOUR_DRIVE_LINK with your actual Google Drive link
+      -->
+      <a href="https://drive.google.com/drive/folders/19VpHcElLHjzhA30-MJCiOmoZZo3w6WYw?usp=sharing" class="btn" target="_blank" rel="noopener">
+        <span class="btn-icon">📁</span>
+        Photo Album
+      </a>
+
+      <!--
+        DIGITAL YEARBOOK: Replace YOUR_YEARBOOK_LINK with your actual link
+        (Can be a PDF link, Google Drive link, Canva share link, etc.)
+      -->
+      <a href="https://ee-schools.org/wp-content/uploads/Under-Construction-Sign.png" class="btn" target="_blank" rel="noopener">
+        <span class="btn-icon">📖</span>
+        Digital Yearbook
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════ -->
+  <footer class="footer">
+    <p class="footer-text">SEE Batch of 2082 &nbsp;·&nbsp; Rajarshi Gurukul &nbsp;·&nbsp; Made with love 💛</p>
+    <!-- ✨ SURPRISE: Click the text below! -->
+    <span class="footer-secret" id="footerSecret">✦ &nbsp; click me &nbsp; ✦</span>
+  </footer>
+
+  <!-- ═══ EASTER EGG MODAL ══════════════════════════════ -->
+  <div class="easter-modal" id="easterModal">
+    <div class="easter-box">
+      <span class="easter-emoji">🎓✨</span>
+      <h3>You found the secret!</h3>
+      <p>No matter where life takes us, we'll always be the SEE Batch of 2082 from Rajarshi Gurukul. Proud of every single one of us. Carry this chapter with you, always. 💛</p>
+      <button class="easter-close" onclick="closeEaster()">Close &nbsp;✦</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
