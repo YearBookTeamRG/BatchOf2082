@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Yearbook Team — SEE Batch of 2082</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+  <canvas id="particleCanvas"></canvas>
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- ═══ NAVBAR ═══════════════════════════════════════ -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      SEE '82
+      <small>Rajarshi Gurukul</small>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="teachers.html">Teachers</a></li>
+      <li><a href="team.html" class="active">The Team</a></li>
+    </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══ PAGE HEADER ═══════════════════════════════════ -->
+  <header class="page-header">
+    <span class="page-eyebrow">The people behind it all</span>
+    <h1 class="page-title">The <em>Yearbook Team</em></h1>
+    <div class="page-divider"></div>
+  </header>
+
+  <!-- ═══ TEAM ══════════════════════════════════════════ -->
+  <div class="team-wrapper">
+
+    <div class="team-grid">
+
+
+      <div class="team-card scroll-fade">
+        <div class="team-photo-wrap" data-photo-img>
+          <img src="images/team-1.jpg" alt="Member Name 1"/>
+          <span class="emoji-fallback">🌟</span>
+        </div>
+        <span class="team-role">Designer</span>
+        <h3 class="team-name">Arjun Dip Shrestha</h3>
+        <div class="team-rule"></div>
+        <p class="team-message placeholder">Live your life
+          Bunk classes
+        </p>
+      </div>
+
+      <!-- ══════════════════════════════════════════════
+           TEAM MEMBER 2
+      ══════════════════════════════════════════════ -->
+      <div class="team-card scroll-fade scroll-fade-delay-1">
+        <div class="team-photo-wrap" data-photo-img>
+          <img src="images/team-2.jpg" alt="Member Name 2"/>
+          <span class="emoji-fallback">✨</span>
+        </div>
+        <span class="team-role">Content manager</span>
+        <h3 class="team-name">Suryansha Bhatta</h3>
+        <div class="team-rule"></div>
+        <p class="team-message placeholder">.</p>
+      </div>
+
+      <!-- ══════════════════════════════════════════════
+           TEAM MEMBER 3
+      ══════════════════════════════════════════════ -->
+      <div class="team-card scroll-fade scroll-fade-delay-2">
+        <div class="team-photo-wrap" data-photo-img>
+          <img src="images/team-3.jpg" alt="Member Name 3"/>
+          <span class="emoji-fallback">💫</span>
+        </div>
+        <span class="team-role">Coordinator</span>
+        <h3 class="team-name">Biddyotama</h3>
+        <div class="team-rule"></div>
+        <p class="team-message placeholder">.</p>
+      </div>
+
+    </div><!-- /team-grid -->
+
+    <!--  Small closing note  -->
+    <p style="text-align:center;margin-top:4rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--cream-dim);line-height:1.9;">
+      This yearbook was put together with love, late nights, and a lot of memories.<br/>
+      Thank you for letting us tell your story. &nbsp;✦
+    </p>
+
+  </div><!-- /team-wrapper -->
+
+  <!-- ═══ FOOTER ════════════════════════════════════════ -->
+  <footer class="footer">
+    <p class="footer-text">SEE Batch of 2082 &nbsp;·&nbsp; Rajarshi Gurukul &nbsp;·&nbsp; Made with love 💛</p>
+    <span class="footer-secret" id="footerSecret">✦ &nbsp; click me &nbsp; ✦</span>
+  </footer>
+
+  <div class="easter-modal" id="easterModal">
+    <div class="easter-box">
+      <span class="easter-emoji">🎓✨</span>
+      <h3>You found the secret!</h3>
+      <p>No matter where life takes us, we'll always be the SEE Batch of 2082 from Rajarshi Gurukul. Proud of every single one of us. Carry this chapter with you, always. 💛</p>
+      <button class="easter-close" onclick="closeEaster()">Close &nbsp;✦</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
